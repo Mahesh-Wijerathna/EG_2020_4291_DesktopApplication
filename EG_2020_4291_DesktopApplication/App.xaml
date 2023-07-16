@@ -1,0 +1,68 @@
+﻿<Application x:Class="EG_2020_4291_DesktopApplication.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EG_2020_4291_DesktopApplication"
+             StartupUri="/View/Main_Window.xaml">
+    <Application.Resources>
+        <!--styles common for two or more windows-->
+        <Style x:Key="minAndClose" TargetType="Button">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Foreground" Value="#212121"/>
+            <Setter Property="Background" Value="SeaShell" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Background" Value="Red"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#64B5F6"/>
+                    <Setter Property="Cursor" Value="Wait"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="keyButtonStyles" TargetType="Button">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="161"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Foreground" Value="#212121"/>
+            <Setter Property="Background" Value="#42A5F5" />
+            <Setter Property="Margin" Value="40 10 40 0" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="#42A5F5"/>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#64B5F6"/>
+                    <Setter Property="Cursor" Value="AppStarting"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Application.Resources>
+</Application>

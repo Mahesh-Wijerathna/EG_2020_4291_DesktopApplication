@@ -1,0 +1,198 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EG_2020_4291_DesktopApplication.View"
+        xmlns:ViewModel="clr-namespace:EG_2020_4291_DesktopApplication.ViewModel" x:Class="EG_2020_4291_DesktopApplication.View.Main_Window"
+        mc:Ignorable="d"
+        Title="Main_Window" Height="505" 
+        Width="814"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Window.DataContext>
+        <ViewModel:MainWindow_VM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style x:Key="heading_of_list" TargetType="TextBlock" >
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#212121" />
+            <Setter Property="Background" Value="#07A8C3"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Padding" Value="10"/>
+
+        </Style>
+        <Style x:Key="studentList" TargetType="TextBlock" >
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="1 "/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Background" Value="#64B5F6"/>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="Padding" Value="8"/>
+
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="5,5,5,5" 
+            CornerRadius="3" Background="#FFA2E48B" >
+        <Border.BorderBrush>
+            <LinearGradientBrush EndPoint="0.5,1" 
+                                 StartPoint="0.5,0">
+                <GradientStop Color="#FF330202"/>
+                <GradientStop Color="#FF520404" Offset="1"/>
+                <GradientStop Color="#FFE47E7E" Offset="0.25"/>
+                <GradientStop Color="#FFE67171" Offset="0.75"/>
+                <GradientStop Color="#FFCAB6B6" Offset="0.5"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Grid>
+            <StackPanel Height="500" 
+                        Width="809" 
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" 
+                                     StartPoint="0.5,0">
+                        <GradientStop Color="#FF06169A"/>
+                        <GradientStop Color="#FF040A38" Offset="3"/>
+                        <GradientStop Color="#FF757AA4" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <StackPanel Height="500" 
+                        Width="250" 
+                        HorizontalAlignment="Left"
+                        Orientation="Vertical">
+                    <TextBlock Text="Students Managment" 
+                           FontFamily="timesnewroman"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Foreground="#212121"
+                           Background="#FFCCA355"
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" 
+                           Margin="10,10,10,0"  
+                           Padding="10"
+                           Height="50"
+                           Width="250"/>
+                    <TextBlock Text="           System" 
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Top" 
+                           Margin="10,0,10,10" 
+                           Width="250"
+                           Height="50"
+                           FontFamily="timesnewroman"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Foreground="#212121"
+                           Background="#FFCCA355"/>
+                    <Button Content="Add Student"    
+                            Command="{Binding AddStudentCommand}"   
+                            Style="{DynamicResource keyButtonStyles}"/>
+                    <Button Content="Edit Student"   
+                            Command="{Binding EditStudentCommand}"  
+                            Style="{DynamicResource keyButtonStyles}"/>
+                    <Button Content="Delete Student" 
+                            Command="{Binding DeleteStudentCommand}" 
+                            Style="{DynamicResource keyButtonStyles}"/>
+                </StackPanel>
+                <StackPanel Height="500" 
+                        Width="559" 
+                        HorizontalAlignment="Left"
+                        Orientation="Vertical">
+                    <StackPanel Margin="0,29,0,0" 
+                            Height="471" 
+                            Width="500" 
+                            VerticalAlignment="Top" 
+                            HorizontalAlignment="Left" 
+                            Orientation="Vertical">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" 
+                                             StartPoint="0.5,0">
+                                <GradientStop Color="#FF42010A" Offset="0"/>
+                                <GradientStop Color="#FFA26271" Offset="1"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <StackPanel Margin=" 50 5 0 0" 
+                                    HorizontalAlignment="Left" 
+                                    Width="450"  
+                                    Background="Transparent" 
+                                    Orientation="Horizontal">
+                            <TextBlock Text="First Name "    Style="{StaticResource heading_of_list}" />
+                            <TextBlock Text="Las tName "     Style="{StaticResource heading_of_list}"  />
+                            <TextBlock Text="Age "           Style="{StaticResource heading_of_list}"  />
+                            <TextBlock Text="Date of Birth " Style="{StaticResource heading_of_list}"/>
+                            <TextBlock Text="GPA" Width="45" Style="{StaticResource heading_of_list}" />
+                        </StackPanel>
+
+                        <ListView x:Name="studentsList" 
+                                  ItemsSource="{Binding Students}"
+                                  SelectedItem="{Binding SelectedStudent}"
+                                  Background="Transparent" 
+                                  BorderThickness="0"
+                                  Height="260" 
+                                  Width="500" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="Transparent" 
+                                            BorderBrush="Black" 
+                                            BorderThickness="0,2,0,2"
+                                            Width="486" 
+                                            Height="35">
+                                        <StackPanel  Background="Transparent" 
+                                                     Orientation="Horizontal" 
+                                                     HorizontalAlignment="Right" 
+                                                     Width="496" >
+                                            <Image Source="{Binding Image_Of_Student}" 
+                                                   Width="30" Height="30" 
+                                                   Margin="16,1,7,1"/>
+                                            <TextBlock Text="{Binding First_Name}"
+                                                       Style="{StaticResource studentList}"
+                                                       Width="106" 
+                                                       HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Last_Name}"
+                                                       Style="{StaticResource studentList}"
+                                                       Width="103"/>
+                                            <TextBlock Text="{Binding Age}" 
+                                                       Style="{StaticResource studentList}"
+                                                       Width="55"/>
+                                            <TextBlock Text="{Binding Date_Of_Birth}" 
+                                                       Style="{StaticResource studentList}"
+                                                       Width="121"/>
+                                            <TextBlock Text="{Binding GPA}" 
+                                                       Style="{StaticResource studentList}"
+                                                       Width="55"/>
+                                        </StackPanel>
+                                    </Border>
+                                    
+                                    
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+
+                        </ListView>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <Button Content="Minimize"  
+                    Command="{Binding Minimize_ButtonCommand}" 
+                    Style="{DynamicResource minAndClose}"
+                    Margin="664,0,70,470"/>
+            <Button Content="Close"     
+                    Command="{Binding Close_ButtonCommand}"    
+                    Style="{DynamicResource minAndClose}"
+                    Margin="734,0,0,470" />
+        
+        
+        </Grid>
+    </Border>
+</Window>
